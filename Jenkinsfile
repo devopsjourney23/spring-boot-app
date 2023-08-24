@@ -17,6 +17,7 @@ pipeline{
         stage('Build and Test'){
             steps{
                 sh 'ls -ltr'
+                sh 'Testing E2E CICD Pipeline'
                 // build the project and create a JAR file
                 sh 'mvn clean package'
             }
