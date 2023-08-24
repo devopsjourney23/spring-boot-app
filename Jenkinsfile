@@ -53,13 +53,13 @@ pipeline{
               withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yaml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifest/deployment.yaml
                     git config --global user.email "lax.aws1@gmail.com"
                     git config --global user.name "devopsjourney23"
                     git config --global --add safe.directory "*"
-                    git add deployment.yaml
+                    git add manifest/deployment.yaml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
-                    git push -f https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}/manifest HEAD:master
+                    git push -f https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}/ HEAD:master
                 '''
                 }
             }
