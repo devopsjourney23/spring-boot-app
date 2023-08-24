@@ -19,13 +19,13 @@ pipeline{
             steps{
                 sh 'ls -ltr'
                 // build the project and create a JAR file
-                sh 'cd spring-boot-app && mvn clean package'
+                sh 'mvn clean package'
             }
         }
         stage('SonarQube Code Inspection'){
             steps{
                 withSonarQubeEnv('my-sonarqube') {
-                    sh 'cd spring-boot-app && mvn sonar:sonar'
+                    sh 'mvn sonar:sonar'
                 }
             }
         }
