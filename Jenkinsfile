@@ -54,10 +54,11 @@ pipeline{
                 sh '''
                     BUILD_NUMBER=${BUILD_NUMBER}
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" manifest/deployment.yaml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" src/main/resources/templates/index.html
                     git config --global user.email "lax.aws1@gmail.com"
                     git config --global user.name "devopsjourney23"
                     git config --global --add safe.directory "*"
-                    git add manifest/deployment.yaml
+                    git add manifest/deployment.yaml src/main/resources/templates/index.html
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push -f https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME}/ HEAD:master
                 '''
