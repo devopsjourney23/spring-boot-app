@@ -1,9 +1,12 @@
 This a simple Spring Boot web page. Idea of this exercise is to build CICD Pipeline to deployment changes automatically on k8s cluster.
 Continous Integration is implemented using Jenkins and Continous Delivery using ArgoCD on local k8s cluster.
 
+![image](https://github.com/devopsjourney23/spring-boot-app/assets/142556153/c40fc189-7b7c-453b-ad53-3c43315d86d4)
+
+
 Please follow below steps for installtion for respective components of this CICD implementation.
 
-A) Installing Docker on Linux (Ubuntu)
+**A) **Installing Docker on Linux (Ubuntu)****
    sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
    sudo groupadd docker
    sudo usermod -aG docker $USER
@@ -14,7 +17,7 @@ A) Installing Docker on Linux (Ubuntu)
    sudo systemctl enable docker.service
    sudo systemctl enable containerd.service
 
-B) I'm using docker container for Jenkins Agent to carryout pipeline execution. Below are steps for Jenkins Installation on Linux.
+**B) **I'm using docker container for Jenkins Agent to carryout pipeline execution. Below are steps for Jenkins Installation on Linux.****
    Install Java 
    sudo apt update
    sudo apt install openjdk-17-jre
@@ -30,8 +33,8 @@ B) I'm using docker container for Jenkins Agent to carryout pipeline execution. 
    sudo systemctl start jenkins
 
 
-C) SonarQube is "Code Quality Assurance Tool" that collects and analyze source code, and provides reports for the code quality of your project.
-   It combines static and dynamic analysis tools and enables quality to be measure continually over time.In a nutshell, SonarQube provide "Continuous Inspection".
+**C) SonarQube is "Code Quality Assurance Tool" that collects and analyze source code, and provides reports for the code quality of your project.
+   It combines static and dynamic analysis tools and enables quality to be measure continually over time.In a nutshell, SonarQube provide "Continuous Inspection".**
     
    Installing SonarQube on Linux(Ubuntu)
    sudo apt install openjdk-17-jre
@@ -52,8 +55,8 @@ C) SonarQube is "Code Quality Assurance Tool" that collects and analyze source c
 
    After your start sonarqube, you can access webgui "http://localhost:9000/"
 
-D) ArgoCD is designed to work natively with Kubernetes Clusters, making is easire to scale. In a nutshell, ArgoCD is a k8s controller, responsible for continously    
-   monitoring all running applications and comparing their live state to the desired state defined in GIT repo. ArgoCD is declarative continous delivery tool for k8s applications.
+**D) ArgoCD is designed to work natively with Kubernetes Clusters, making is easire to scale. In a nutshell, ArgoCD is a k8s controller, responsible for continously    
+   monitoring all running applications and comparing their live state to the desired state defined in GIT repo. ArgoCD is declarative continous delivery tool for k8s applications.**
 
    As a prerequisite to ArgoCD, I've deployed k8s cluster using minikube.
    https://minikube.sigs.k8s.io/docs/start/
