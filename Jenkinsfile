@@ -31,12 +31,12 @@ pipeline{
         stage('Build and Push Docker Image'){
             environment {
               DOCKER_IMAGE = "lkt143/cicd-pipeline-demo-01:${BUILD_NUMBER}"
-              DOCKERFILE_LOCATION = "spring-boot-app/Dockerfile"
+              DOCKERFILE_LOCATION = "Dockerfile"
               REGISTRY_CREDENTIALS = credentials('docker-cred')
             }
             steps{
                 script {
-                  sh 'cd spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
+                  sh 'docker build -t ${DOCKER_IMAGE} .'
                   def dockerImage = docker.image("${DOCKER_IMAGE}")
                   docker.withRegistry('https://index.docker.io/v1/', "docker-cred") {
                   dockerImage.push()
@@ -53,11 +53,11 @@ pipeline{
               withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                 sh '''
                     BUILD_NUMBER=${BUILD_NUMBER}
-                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" spring-boot-app-manifests/deployment.yaml
+                    sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" deployment.yaml
                     git config --global user.email "lax.aws1@gmail.com"
                     git config --global user.name "devopsjourney23"
                     git config --global --add safe.directory "*"
-                    git add spring-boot-app-manifests/deployment.yaml
+                    git add deployment.yaml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:master
                 '''
