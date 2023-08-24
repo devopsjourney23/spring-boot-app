@@ -8,7 +8,6 @@ pipeline{
     stages{
         stage("Checkout"){
             steps{
-                sh 'echo passeed'
                 sh 'echo Testing E2E CICD Demo'
                 //git branch: 'master', url: 'https://github.com/devopsjourney23/spring-boot-app.git'
                 //checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/devopsjourney23/spring-boot-app.git']])
